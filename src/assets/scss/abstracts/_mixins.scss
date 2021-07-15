@@ -1,0 +1,27 @@
+@mixin toRem($value) {
+    width: ($value / 14) + rem;
+}
+
+@mixin for-tablet-landscape-down {
+    @media (max-width: 991px) {
+        @content;
+    }
+}
+
+@mixin for-phone-only {
+    @media (max-width: 576px) {
+        @content;
+    }
+}
+
+@mixin for-mini-phone {
+    @media (max-width: 375px) {
+        @content;
+    }
+}
+
+@mixin for-minimin-phone {
+    @media (max-width: 319px) {
+        @content;
+    }
+}

@@ -1,0 +1,19 @@
+<div class="top-movies">
+    <div class="main-carousel">
+        <div class="main-img">
+            <ngx-slick-carousel class="carousel main" #slickModal="slick-carousel" [config]="imagesSlider">
+                <div ngxSlickItem *ngFor="let slide of slides" class="slide">
+                    <img src="{{ slide.img }}" alt="" width="100%">
+                </div>
+            </ngx-slick-carousel>
+        </div>
+    </div>
+
+    <div class="thumbnails-carousel">
+        <ngx-slick-carousel class="carousel thumbs" #slickModal="slick-carousel" [config]="thumbnailsSlider ">
+            <div ngxSlickItem *ngFor="let slide of slides" class="slide">
+                <img src="{{ slide.img }}" alt="" width="100%">
+            </div>
+        </ngx-slick-carousel>
+    </div>
+</div>

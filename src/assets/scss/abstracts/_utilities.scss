@@ -1,0 +1,10 @@
+.bg-primary {
+    background-color: $primary !important;
+}
+.red-color {
+    color: $red !important;
+}
+.active-link {
+    @extend .red-color;
+    font-weight: 600;
+}

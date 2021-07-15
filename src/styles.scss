@@ -1,1 +1,17 @@
 /* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+
+
+@import './assets/scss/abstracts/_mixins.scss';
+@import './assets/scss/abstracts/_variables.scss';
+@import './assets/scss/abstracts/_utilities.scss';
+
+@import './assets/scss/base/_reset.scss';
+@import './assets/scss/base/_typograoht.scss';
+
+@import './assets/scss/layouts/_navbar.scss';
+
+@import './assets/scss/components/slider';
+
+@import './assets/scss/vendors/_bootsrap.scss';
+
