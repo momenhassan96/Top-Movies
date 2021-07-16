@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { faOtter } from '@fortawesome/free-solid-svg-icons';
+import { OwlOptions } from 'ngx-owl-carousel-o';
+import { SharedService } from 'src/app/shared/services/shared.service';
 
 @Component({
   selector: 'app-home',
@@ -6,33 +9,53 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-
-  constructor() { }
+  newMoviesList: Array<{}>;
+  customOptions: OwlOptions = {
+    loop: true,
+    autoplay: true,
+    mouseDrag: true,
+    touchDrag: false,
+    pullDrag: false,
+    dots: false,
+    navSpeed: 700,
+    nav: false,
+    navText: ['', ''],
+    responsive: {
+      0: {
+        items: 1
+      },
+      400: {
+        items: 1
+      },
+      740: {
+        items: 1
+      },
+      940: {
+        items: 4
+      }
+    },
+  }
+  constructor(private sharedService: SharedService) { }
 
   ngOnInit(): void {
+    this.getNewMovies();
   }
-  slides = [
-    {img: "http://placehold.it/350x150/000000"},
-    {img: "http://placehold.it/350x150/111111"},
-    {img: "http://placehold.it/350x150/333333"},
-  ];
-  imagesSlider = {
-    speed:300,
-    slidesToShow:1,
-    slidesToScroll:1,
-    fade:true,
-    // prevArrow:'.main-img .prev-arrow',
-    // nextArrow:'.main-img .next-arrow',
-    asNavFor:".thumbs",
-  };
-  thumbnailsSlider = {
-    speed:300,
-    slidesToShow:3,
-    slidesToScroll:1,
-    focusOnSelect:true,
-    asNavFor:".main",
-    // prevArrow:'.thumbnails-carousel .prev-arrow',
-    // nextArrow:'.thumbnails-carousel .next-arrow',
-  };
 
+  getNewMovies(): void {
+    this.sharedService.getNewMoviesInTheYear().subscribe((movies: Array<{}>) => {
+      this.newMoviesList = movies;
+      this.newMoviesList.forEach(main => {
+        // To get Thumbnail for every movie.
+        this.sharedService.getMovie(main['id']).subscribe(res => {
+          main['thumbnail'] = res['thumbnail']['backdrops'].slice(0,3);
+        })
+      })
+    })
+  }
+
+
+  
+  navigateToMovie(id){
+
+  }
 }

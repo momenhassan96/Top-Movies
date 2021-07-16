@@ -1,18 +1,25 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SlickCarouselModule } from 'ngx-slick-carousel';
 import { SharedService } from './services/shared.service';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { ImgSrcPipe } from './pipes/img-src.pipe';
+import { CarouselModule } from 'ngx-owl-carousel-o';
 
 
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    ImgSrcPipe
+  ],
   imports: [
     CommonModule,
-    SlickCarouselModule,
+    FontAwesomeModule,
+    CarouselModule 
   ],
   exports:[
-    SlickCarouselModule
+    FontAwesomeModule,
+    ImgSrcPipe,
+    CarouselModule 
   ],
   providers:[
     SharedService

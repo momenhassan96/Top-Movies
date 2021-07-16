@@ -6,19 +6,22 @@ import {
   HttpInterceptor
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Injectable()
 export class HeaderInterceptor implements HttpInterceptor {
 
-  constructor() {}
-
+  constructor() { }
+  private get baseUrl() {
+    return environment.baseUrl;
+  }
+  private get apiKey() {
+    return environment.api_key;
+  }
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     request = request.clone({
-      setHeaders:{
-        'x-rapidapi-key':'259404e3femsh7375ac86cbd7936p18e47cjsn6fc6a5420713',
-        'x-rapidapi-host':'movie-database-imdb-alternative.p.rapidapi.com'
-      }
-    })
+      url: this.baseUrl + request.url + `?api_key=${this.apiKey}`,
+    });
     return next.handle(request);
   }
 }

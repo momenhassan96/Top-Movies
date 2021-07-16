@@ -8,3 +8,11 @@
     @extend .red-color;
     font-weight: 600;
 }
+
+.dark-grey{
+    color:$dark-grey !important;
+}
+
+.border-b-grey{
+    border-bottom: solid 5px $dark-grey;
+}
