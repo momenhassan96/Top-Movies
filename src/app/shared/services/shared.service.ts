@@ -1,16 +1,18 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { forkJoin, Subject } from 'rxjs';
+import { forkJoin, Observable, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SharedService {
   newFourMovies = new Subject();
+  topRatedMovies = new Subject();
+
   constructor(private http: HttpClient) { }
 
   // Function to get New Movies
-  getNewMoviesInTheYear() {
+  getNewMoviesInTheYear():Observable<any> {
     const getYear = new Date().getFullYear().toString();
     const options = {
       params: {
@@ -30,10 +32,24 @@ export class SharedService {
   }
 
   // Function To get Thumbnail for every movie.
-  getMovie(id: Number) {
+  getMovie(id: Number):Observable<any> {
     return forkJoin({
       thumbnail: this.http.get(`movie/${id}/images`),
     })
+  }
+
+
+  // Fuction To get Top Rated 
+
+  getTopRated():Observable<any>{
+    this.http.get(`/trending/movie/day`).subscribe(res=>{
+      if(res['results']){
+        this.topRatedMovies.next(res['results'].slice(0,9));
+      }
+    },
+    err => console.error('Http Error:' + err.error.status_message)
+    )
+    return this.topRatedMovies.asObservable();
   }
 
 

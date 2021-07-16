@@ -1,7 +1,3 @@
-@mixin toRem($value) {
-    width: ($value / 14) + rem;
-}
-
 @mixin for-tablet-landscape-down {
     @media (max-width: 991px) {
         @content;

@@ -1,9 +1,9 @@
 .slider {
     &-main {
-        cursor: pointer !important;
-        &__img{
-            height: 400px;
-            object-fit: contain;
+        position: relative;
+        cursor: pointer;
+        &__img {
+            max-height: 600px;
         }
     }
     &-thumbnail {
@@ -14,4 +14,39 @@
     &-active {
         border: solid 5px $red;
     }
+    .owl-nav {
+        .owl-prev {
+            left: -29px;
+            @include for-phone-only{
+                left:-18px;
+            }
+            @extend .global-but;
+            &:hover {
+                background-color: $red;
+            }
+        }
+        .owl-next {
+            right: -29px;
+            @include for-phone-only{
+                right:-18px;
+            }
+            @extend .global-but;
+            &:hover {
+                background-color: $red;
+            }
+        }
+    }
+}
+
+.global-but {
+    padding: 4px;
+    background-color: $red;
+    font-size: 25px;
+    font-weight: 600;
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    position: absolute;
+    top: 46%;
+    transform: translateY(-50%);
 }

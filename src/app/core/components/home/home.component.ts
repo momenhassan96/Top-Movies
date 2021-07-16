@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { faOtter } from '@fortawesome/free-solid-svg-icons';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import { SharedService } from 'src/app/shared/services/shared.service';
 
@@ -10,7 +9,8 @@ import { SharedService } from 'src/app/shared/services/shared.service';
 })
 export class HomeComponent implements OnInit {
   newMoviesList: Array<{}>;
-  customOptions: OwlOptions = {
+  topRatedMovies:Array<{}>;
+  customOptionsForNew: OwlOptions = {
     loop: true,
     autoplay: true,
     mouseDrag: true,
@@ -31,7 +31,32 @@ export class HomeComponent implements OnInit {
         items: 1
       },
       940: {
-        items: 4
+        items: 1
+      }
+    },
+  }
+  customOptionsForTop: OwlOptions = {
+    loop: true,
+    autoplay: false,
+    mouseDrag: true,
+    touchDrag: false,
+    pullDrag: false,
+    dots: false,
+    navSpeed: 700,
+    nav: true,
+    navText: ['<', '>'],
+    responsive: {
+      0: {
+        items: 1
+      },
+      400: {
+        items: 1
+      },
+      740: {
+        items: 1
+      },
+      940: {
+        items: 3
       }
     },
   }
@@ -39,6 +64,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.getNewMovies();
+    this.getTopRated();
   }
 
   getNewMovies(): void {
@@ -50,6 +76,13 @@ export class HomeComponent implements OnInit {
           main['thumbnail'] = res['thumbnail']['backdrops'].slice(0,3);
         })
       })
+    })
+  }
+
+  getTopRated(){
+    this.sharedService.getTopRated().subscribe(res=>{
+      this.topRatedMovies = res;
+      console.log(this.topRatedMovies)
     })
   }
 
