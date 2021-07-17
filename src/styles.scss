@@ -3,19 +3,18 @@
 @import '~ngx-owl-carousel-o/lib/styles/scss/owl.carousel';
 @import '~ngx-owl-carousel-o/lib/styles/scss/owl.theme.default';
 
-@import './assets/scss/abstracts/_mixins';
-@import './assets/scss/abstracts/_variables';
-@import './assets/scss/abstracts/_utilities';
+@import './assets/scss/abstracts/mixins';
+@import './assets/scss/abstracts/variables';
+@import './assets/scss/abstracts/utilities';
 
-@import './assets/scss/base/_reset';
+@import './assets/scss/base/reset';
 @import './assets/scss/base/typography';
 
-@import './assets/scss/layouts/_navbar';
-@import './assets/scss/layouts/footer';
+@import './assets/scss/layouts/navbar';
 
 @import './assets/scss/components/slider';
 
 @import './assets/scss/pages/movie-details';
 
-@import './assets/scss/vendors/_bootsrap';
+@import './assets/scss/vendors/bootsrap';
 

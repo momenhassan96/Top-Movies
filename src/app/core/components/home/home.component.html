@@ -35,7 +35,6 @@
                         <img src="{{slide.backdrop_path | imgSrc}}" class="slider-main__img"
                             [alt]="slide.original_title">
                         <div class="card-body bg-white">
-                            <!-- <h5 class="card-title slider-main__title">{{slide.title}}</h5> -->
                             <a [routerLink]="['/movie-details',slide.id]" class="slider-main__title fw5 text-center text-xxl dark-grey"> {{slide.original_title}}</a>
                             <p class="card-text dark-grey">{{slide.release_date |date:'d MMM y'}}</p>
                         </div>

@@ -40,8 +40,7 @@ export class SharedService {
   }
 
 
-  // Fuction To get Top Rated 
-
+  // Fuction To get Top Rated Movies
   getTopRated():Observable<any>{
     this.http.get(`movie/top_rated`).subscribe(res=>{
       if(res['results']){

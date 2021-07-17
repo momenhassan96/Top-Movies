@@ -21,8 +21,8 @@ export class MoveDetailsComponent implements OnInit {
   getMovieById(): void {
     this.sharedService.getMovieById(this.activatedRoute.snapshot.params.id).subscribe(res => {
       this.movieDetail = res;
+      // CALCULATE rate in IMDB
       this.rate =(this.movieDetail['vote_count']/(this.movieDetail['vote_count']+250))*this.movieDetail['vote_average']+(7.0/(this.movieDetail['vote_count']+250))*7.0;
-    
     });
   }
 

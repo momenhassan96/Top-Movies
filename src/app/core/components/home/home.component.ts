@@ -85,6 +85,7 @@ export class HomeComponent implements OnInit {
     })
   }
 
+  // CHANGE Main Image
   changeMainPage(thumb,slide){
     slide.backdrop_path = thumb.file_path;
   }
