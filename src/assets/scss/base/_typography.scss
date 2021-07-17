@@ -1,6 +1,7 @@
 :root {
     --font-primary: "Open Sans", sans-serif;
     --font-base-size: 14px;
+    --font-size-xxl:24px;
     --font-size-xl: 20px;
     --font-size-lg: 18px;
     --font-size-md: 16px;
@@ -19,6 +20,25 @@ body {
 }
 
 // FONT SIZES
+
+.text-xxl{
+    font-size: var(--font-size-xxl);
+    @include for-tablet-landscape-down {
+        font-size: var(--font-size-xl);
+    }
+
+    @include for-phone-only {
+        font-size: var(--font-size-lg);
+    }
+
+    @include for-mini-phone {
+        font-size: var(--font-size-md);
+    }
+
+    @include for-minimin-phone {
+        font-size: var(--font-size-sm);
+    }
+}
 .text-xl {
     font-size: var(--font-size-xl);
     @include for-tablet-landscape-down {
@@ -67,6 +87,7 @@ body {
 .text-xs {
     font-size: var(--font-size-xs);
 }
+
 
 // FONT WEIGHT
 .fw5 {

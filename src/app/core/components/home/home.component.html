@@ -1,18 +1,17 @@
 <div class="slider bg-primary">
     <div class="container mb-5 p-0">
         <div class="border-bottom-grey">
-            <div class="col-12">
-                <h4 class="text-white py-3 fw7">New movies</h4>
-            </div>
             <owl-carousel-o [options]="customOptionsForNew">
                 <ng-container *ngFor="let slide of newMoviesList">
                     <ng-template carouselSlide [id]="slide.id">
-                        <div class="card m-2 border-0 bg-primary slider-main" (click)="navigateToMovie(slide.id)">
-                            <img src="{{slide.poster_path | imgSrc}}" class="slider-main__img"
+                        <div class="card m-2 border-0 bg-primary slider-main">
+                            <img src="{{slide.backdrop_path | imgSrc}}" class="slider-main__img"
                                 [alt]="slide.original_title">
+                                <a [routerLink]="['/movie-details',slide.id]" class="slider-main__title fw7 text-center mt-4 text-xxl"> {{slide.original_title}}</a>
                             <div class="card-body d-flex p-0 m-3 justify-content-center">
-                                <div class="mx-1 col-2 p-0 slider-thumbnail" *ngFor="let thumb of slide.thumbnail">
+                                <div class="mx-1 col-3 p-0 slider-thumbnail d-flex justify-content-center" *ngFor="let thumb of slide.thumbnail" (click)="changeMainPage(thumb,slide)">
                                     <img src="{{thumb.file_path | imgSrc}}" class="slider-thumbnail__img"
+                                        [ngClass]="{'slider-active':thumb.file_path == slide.backdrop_path}"
                                         [alt]="slide.original_title" />
                                 </div>
                             </div>
@@ -32,11 +31,12 @@
         <owl-carousel-o [options]="customOptionsForTop">
             <ng-container *ngFor="let slide of topRatedMovies">
                 <ng-template carouselSlide [id]="slide.id">
-                    <div class="card m-2 border-0 bg-primary slider-main" (click)="navigateToMovie(slide.id)">
+                    <div class="card m-2 border-0 bg-primary slider-main">
                         <img src="{{slide.backdrop_path | imgSrc}}" class="slider-main__img"
                             [alt]="slide.original_title">
                         <div class="card-body bg-white">
-                            <h5 class="card-title red-color">{{slide.title}}</h5>
+                            <!-- <h5 class="card-title slider-main__title">{{slide.title}}</h5> -->
+                            <a [routerLink]="['/movie-details',slide.id]" class="slider-main__title fw5 text-center text-xxl dark-grey"> {{slide.original_title}}</a>
                             <p class="card-text dark-grey">{{slide.release_date |date:'d MMM y'}}</p>
                         </div>
                     </div>
@@ -44,5 +44,4 @@
             </ng-container>
         </owl-carousel-o>
     </div>
-    <div class="border-b-grey"></div>
 </div>

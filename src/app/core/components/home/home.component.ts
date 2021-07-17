@@ -9,14 +9,14 @@ import { SharedService } from 'src/app/shared/services/shared.service';
 })
 export class HomeComponent implements OnInit {
   newMoviesList: Array<{}>;
-  topRatedMovies:Array<{}>;
+  topRatedMovies: Array<{}>;
   customOptionsForNew: OwlOptions = {
     loop: true,
-    autoplay: true,
+    autoplay: false,
     mouseDrag: true,
-    touchDrag: false,
+    touchDrag: true,
     pullDrag: false,
-    dots: false,
+    dots: true,
     navSpeed: 700,
     nav: false,
     navText: ['', ''],
@@ -39,7 +39,7 @@ export class HomeComponent implements OnInit {
     loop: true,
     autoplay: false,
     mouseDrag: true,
-    touchDrag: false,
+    touchDrag: true,
     pullDrag: false,
     dots: false,
     navSpeed: 700,
@@ -73,22 +73,19 @@ export class HomeComponent implements OnInit {
       this.newMoviesList.forEach(main => {
         // To get Thumbnail for every movie.
         this.sharedService.getMovie(main['id']).subscribe(res => {
-          main['thumbnail'] = res['thumbnail']['backdrops'].slice(0,3);
+          main['thumbnail'] = res['thumbnail']['backdrops'].slice(0, 3);
         })
       })
     })
   }
 
-  getTopRated(){
-    this.sharedService.getTopRated().subscribe(res=>{
+  getTopRated() {
+    this.sharedService.getTopRated().subscribe(res => {
       this.topRatedMovies = res;
-      console.log(this.topRatedMovies)
     })
   }
 
-
-  
-  navigateToMovie(id){
-
+  changeMainPage(thumb,slide){
+    slide.backdrop_path = thumb.file_path;
   }
 }

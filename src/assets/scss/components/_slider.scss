@@ -1,20 +1,39 @@
 .slider {
     &-main {
         position: relative;
-        cursor: pointer;
         &__img {
-            max-height: 600px;
+            max-height:500px;
+            @include for-tablet-landscape-down{
+                transform:scaleX(1);
+            }
+        }
+        &__title{
+            color:$white;
+            transition: all .5s;
+
+            &:hover{
+                color:$red !important;
+            }
         }
     }
     &-thumbnail {
         &__img {
-            height: 80px;
+            // height: 180px;
+            width: 50% !important;
+            object-fit: contain;
+            cursor: pointer;
+            @include for-phone-only{
+                width: 100% !important;
+            }
         }
     }
     &-active {
         border: solid 5px $red;
     }
     .owl-nav {
+        @include for-phone-only{
+            display: none !important;
+        }
         .owl-prev {
             left: -29px;
             @include for-phone-only{

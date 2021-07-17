@@ -8,6 +8,7 @@ import { forkJoin, Observable, Subject } from 'rxjs';
 export class SharedService {
   newFourMovies = new Subject();
   topRatedMovies = new Subject();
+  movieDetail = new Subject();
 
   constructor(private http: HttpClient) { }
 
@@ -42,7 +43,7 @@ export class SharedService {
   // Fuction To get Top Rated 
 
   getTopRated():Observable<any>{
-    this.http.get(`/trending/movie/day`).subscribe(res=>{
+    this.http.get(`movie/top_rated`).subscribe(res=>{
       if(res['results']){
         this.topRatedMovies.next(res['results'].slice(0,9));
       }
@@ -50,6 +51,18 @@ export class SharedService {
     err => console.error('Http Error:' + err.error.status_message)
     )
     return this.topRatedMovies.asObservable();
+  }
+
+
+  getMovieById(movie_id){
+    this.http.get(`/movie/${movie_id}`).subscribe(res=>{
+      if(res){
+        this.movieDetail.next(res);
+      }
+    },
+    err => console.error('Http Error:' + err.error.status_message)
+    )
+    return this.movieDetail.asObservable();
   }
 
 
